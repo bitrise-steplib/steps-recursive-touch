@@ -7,12 +7,13 @@ import (
 	"time"
 
 	"github.com/bitrise-io/go-utils/fileutil"
-
 	"github.com/bitrise-io/go-utils/log"
 	"github.com/bitrise-io/go-utils/pathutil"
 	"github.com/bitrise-tools/go-steputils/cache"
 	"github.com/bitrise-tools/go-steputils/input"
 )
+
+const timestoreFilePath = "/tmp/touch.timestore"
 
 // ConfigsModel ...
 type ConfigsModel struct {
@@ -25,7 +26,7 @@ func createConfigsModelFromEnvs() ConfigsModel {
 	return ConfigsModel{
 		Path:              os.Getenv("directory_path"),
 		TouchTime:         os.Getenv("touch_time"),
-		TimestoreFilePath: os.Getenv("time_store_file_path"),
+		TimestoreFilePath: timestoreFilePath,
 	}
 }
 
@@ -33,13 +34,9 @@ func (configs ConfigsModel) print() {
 	log.Infof("Configs:")
 	log.Printf("- DirectoryPath: %s", configs.Path)
 	log.Printf("- TouchTime: %s", configs.TouchTime)
-	log.Printf("- TimestoreFilePath: %s", configs.TimestoreFilePath)
 }
 
 func (configs ConfigsModel) validate() error {
-	if err := input.ValidateIfNotEmpty(configs.TimestoreFilePath); err != nil {
-		return fmt.Errorf("TimestoreFilePath: %s", err)
-	}
 	if err := input.ValidateIfNotEmpty(configs.Path); err != nil {
 		return fmt.Errorf("DirectoryPath: %s", err)
 	}

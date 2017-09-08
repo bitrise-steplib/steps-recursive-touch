@@ -31,7 +31,7 @@ inputs:
         The path pointing to a directory where the files will be touched.
       is_expand: true
       is_required: true
-  - touch_time:
+  - touch_time: "2017-09-01T15:00:00+00:00"
     opts:
       title: "Touch Time"
       summary: |
@@ -44,11 +44,3 @@ inputs:
         For example: `2017-09-08T14:50:17+02:00`
       is_expand: true
       is_required: false
-  - time_store_file_path: "/tmp/touch.timestore"
-    opts:
-      title: "Timestore File Path"
-      summary: The path pointing to the timestore file.
-      description: |
-        The path pointing to the timestore files. The step will read the time it needs to use for touch from this file.
-      is_expand: true
-      is_required: true
