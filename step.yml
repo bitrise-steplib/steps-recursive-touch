@@ -1,0 +1,54 @@
+title: "Recursive touch"
+summary: Touches all the files in a directory
+description: |-
+  Touches all the files in a directory and caches the time to keep that between the builds.
+website: https://github.com/bitrise-steplib/steps-recursive-touch
+source_code_url: https://github.com/bitrise-steplib/steps-recursive-touch
+support_url: https://github.com/bitrise-steplib/steps-recursive-touch/issues
+host_os_tags:
+  - osx-10.10
+type_tags:
+  - utility
+is_requires_admin_user: true
+is_always_run: false
+is_skippable: false
+deps:
+  brew:
+  - name: go
+  apt_get:
+  - name: golang
+    bin_name: go
+toolkit:
+  go:
+    package_name: github.com/bitrise-steplib/steps-recursive-touch
+run_if: ""
+inputs:
+  - directory_path: $BITRISE_SOURCE_DIR
+    opts:
+      title: "Path"
+      summary: The path pointing to a directory.
+      description: |
+        The path pointing to a directory where the files will be touched.
+      is_expand: true
+      is_required: true
+  - touch_time:
+    opts:
+      title: "Touch Time"
+      summary: |
+        The time in RFC3339 format that will be set on the files(leave empty to use and store the current time)
+
+        For example: `2017-09-08T14:50:17+02:00`
+      description: |
+        The time in RFC3339 format that will be set on the files(leave empty to use and store the current time)
+
+        For example: `2017-09-08T14:50:17+02:00`
+      is_expand: true
+      is_required: false
+  - time_store_file_path: "/tmp/touch.timestore"
+    opts:
+      title: "Timestore File Path"
+      summary: The path pointing to the timestore file.
+      description: |
+        The path pointing to the timestore files. The step will read the time it needs to use for touch from this file.
+      is_expand: true
+      is_required: true
