@@ -1,4 +1,4 @@
-# Recursive Touch step
+# Recursive Touch for Cache step
 
 Will touch all the files in the given directory with the given time.
 

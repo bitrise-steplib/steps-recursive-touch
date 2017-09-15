@@ -1,7 +1,8 @@
-title: "Recursive touch"
+title: "Recursive touch for Cache"
 summary: Touches all the files in a directory
 description: |-
-  Touches all the files in a directory and caches the time to keep that between the builds.
+  Touches all the files in a directory so you can keep your project's file statuses between builds.
+  Put this step before any `xcodebuild` related step that uses `build`, `test` or `build-for-testing` commands, so `DerivedData` cache can work properly.
 website: https://github.com/bitrise-steplib/steps-recursive-touch
 source_code_url: https://github.com/bitrise-steplib/steps-recursive-touch
 support_url: https://github.com/bitrise-steplib/steps-recursive-touch/issues
@@ -35,11 +36,11 @@ inputs:
     opts:
       title: "Touch Time"
       summary: |
-        The time in RFC3339 format that will be set on the files(leave empty to use and store the current time)
+        The time in RFC3339 format that will be set on the files.
 
         For example: `2017-09-08T14:50:17+02:00`
       description: |
-        The time in RFC3339 format that will be set on the files(leave empty to use and store the current time)
+        The time in RFC3339 format that will be set on the files.
 
         For example: `2017-09-08T14:50:17+02:00`
       is_expand: true
