@@ -24,16 +24,27 @@ workflows:
 
             echo "test-content" > ./test-file.txt
     - path::./:
+        run_if: .IsCI
         title: Step Test
         description: |-
           The example input has a default value,
           you can overwrite it if you want to, just like we did below,
           but the step would use the default value specified in the `step.yml`
           file if you would not specify another value.
-        run_if: "true"
         inputs:
         - directory_path: "./"
         - touch_time: "2017-09-01T15:00:00-07:00"
+    - path::./:
+        run_if: '{{enveq "CI" "false"}}'
+        title: Step Test
+        description: |-
+          The example input has a default value,
+          you can overwrite it if you want to, just like we did below,
+          but the step would use the default value specified in the `step.yml`
+          file if you would not specify another value.
+        inputs:
+        - directory_path: "./"
+        - touch_time: "2017-09-01T15:00:00+02:00"
     - script@1.1.4:
         title: Check if test file's mTime matches with the step's time
         inputs:
