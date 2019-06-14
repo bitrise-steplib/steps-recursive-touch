@@ -1,3 +1,6 @@
+## This step is deprecated and will be removed at 2019-12-14
+---
+
 # Recursive Touch for Cache step
 
 Will touch all the files in the given directory with the given time.
